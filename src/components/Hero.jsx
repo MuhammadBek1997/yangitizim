@@ -31,7 +31,7 @@ export default function Hero() {
     anime.set($('.hero-subtitle'), { opacity: 0, translateY: 20 })
     anime.set($$('.hero-actions > button'), { opacity: 0, translateY: 14, scale: 0.95 })
     anime.set($('.hero-stats'), { opacity: 0, translateY: 28 })
-    anime.set($('.hero-scroll-hint'), { opacity: 0 })
+    // scroll-hint olib tashlandi
 
     anime.timeline({ easing: 'easeOutExpo' })
       .add({
@@ -66,11 +66,6 @@ export default function Hero() {
         translateY: [28, 0],
         duration: 650,
       }, '-=380')
-      .add({
-        targets: $('.hero-scroll-hint'),
-        opacity: [0, 1],
-        duration: 500,
-      }, '-=100')
   }, [])
 
   return (
@@ -82,62 +77,61 @@ export default function Hero() {
       </div>
 
       <div className="container hero-content">
-        {/* Badge — bosilganda sertifikat ochiladi */}
-        <button className="hero-badge" onClick={() => setCertOpen(true)}>
-          <span className="badge-dot" />
-          {t.hero.badge}
-          <svg className="badge-arrow" viewBox="0 0 16 16" fill="currentColor" width="12" height="12">
-            <path d="M6 3a1 1 0 000 2h4.586L3.293 12.293a1 1 0 101.414 1.414L12 6.414V11a1 1 0 102 0V4a1 1 0 00-1-1H6z"/>
-          </svg>
-        </button>
-
-        <h1 className="hero-title">
-          <span className="clip-wrap">
-            <span className="clip-inner">{t.hero.title}</span>
-          </span>
-          <span className="clip-wrap">
-            <span className="clip-inner accent">{t.hero.titleAccent}</span>
-          </span>
-        </h1>
-
-        <p className="hero-subtitle">{t.hero.subtitle}</p>
-
-        <div className="hero-actions">
-          <button className="btn-primary" onClick={() => scrollTo('services')}>
-            {t.hero.cta}
-            <svg viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
+        {/* Chap: matn */}
+        <div className="hero-left">
+          <button className="hero-badge" onClick={() => setCertOpen(true)}>
+            <span className="badge-dot" />
+            {t.hero.badge}
+            <svg className="badge-arrow" viewBox="0 0 16 16" fill="currentColor" width="12" height="12">
+              <path d="M6 3a1 1 0 000 2h4.586L3.293 12.293a1 1 0 101.414 1.414L12 6.414V11a1 1 0 102 0V4a1 1 0 00-1-1H6z"/>
             </svg>
           </button>
-          <button className="btn-outline" onClick={() => scrollTo('contact')}>
-            {t.hero.ctaSecondary}
-          </button>
+
+          <h1 className="hero-title">
+            <span className="clip-wrap">
+              <span className="clip-inner">{t.hero.title}</span>
+            </span>
+            <span className="clip-wrap">
+              <span className="clip-inner accent">{t.hero.titleAccent}</span>
+            </span>
+          </h1>
+
+          <p className="hero-subtitle">{t.hero.subtitle}</p>
+
+          <div className="hero-actions">
+            <button className="btn-primary" onClick={() => scrollTo('services')}>
+              {t.hero.cta}
+              <svg viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            <button className="btn-outline" onClick={() => scrollTo('contact')}>
+              {t.hero.ctaSecondary}
+            </button>
+          </div>
+
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <span className="hero-stat-val">{t.about.stat1.value}</span>
+              <span className="hero-stat-label">{t.about.stat1.label}</span>
+            </div>
+            <div className="hero-stat-divider" />
+            <div className="hero-stat">
+              <span className="hero-stat-val">{t.about.stat2.value}</span>
+              <span className="hero-stat-label">{t.about.stat2.label}</span>
+            </div>
+            <div className="hero-stat-divider" />
+            <div className="hero-stat">
+              <span className="hero-stat-val">{t.about.stat3.value}</span>
+              <span className="hero-stat-label">{t.about.stat3.label}</span>
+            </div>
+          </div>
         </div>
 
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <span className="hero-stat-val">{t.about.stat1.value}</span>
-            <span className="hero-stat-label">{t.about.stat1.label}</span>
-          </div>
-          <div className="hero-stat-divider" />
-          <div className="hero-stat">
-            <span className="hero-stat-val">{t.about.stat2.value}</span>
-            <span className="hero-stat-label">{t.about.stat2.label}</span>
-          </div>
-          <div className="hero-stat-divider" />
-          <div className="hero-stat">
-            <span className="hero-stat-val">{t.about.stat3.value}</span>
-            <span className="hero-stat-label">{t.about.stat3.label}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="hero-scroll-hint">
-        <span />
       </div>
 
       {/* Sertifikat modali */}

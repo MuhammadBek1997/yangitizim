@@ -6,9 +6,7 @@ import LogoMark from './LogoMark'
 export default function Header() {
   const { lang, setLang, t } = useLanguage()
   const [menuOpen, setMenuOpen]   = useState(false)
-  const [langOpen, setLangOpen]   = useState(false)
   const [scrolled, setScrolled]   = useState(false)
-  const langRef = useRef(null)
   const headerRef   = useRef(null)
   const logoTextRef = useRef(null)
   const entranceDone = useRef(false)
@@ -19,18 +17,6 @@ export default function Header() {
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  // Lang dropdown tashqarisiga bosilsa yopiladi
-  useEffect(() => {
-    if (!langOpen) return
-    const onClickOutside = (e) => {
-      if (langRef.current && !langRef.current.contains(e.target)) {
-        setLangOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', onClickOutside)
-    return () => document.removeEventListener('mousedown', onClickOutside)
-  }, [langOpen])
 
   // Header slide-down + logo text fade-in
   useEffect(() => {
@@ -107,46 +93,16 @@ export default function Header() {
         </nav>
 
         <div className="header-right">
-          {/* Desktop: pill buttons | Mobile: dropdown */}
-          <div className="lang-switcher" ref={langRef}>
-            {/* Desktop buttons */}
-            <div className="lang-pills">
-              {['uz', 'ru', 'en'].map((l) => (
-                <button
-                  key={l}
-                  className={`lang-btn${lang === l ? ' active' : ''}`}
-                  onClick={() => setLang(l)}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-            {/* Mobile dropdown */}
-            <div className="lang-drop-wrap">
+          <div className="lang-btns">
+            {['uz', 'ru', 'en'].map(l => (
               <button
-                className="lang-drop-trigger"
-                onClick={() => setLangOpen(!langOpen)}
+                key={l}
+                className={`lang-btn${lang === l ? ' active' : ''}`}
+                onClick={() => setLang(l)}
               >
-                {lang.toUpperCase()}
-                <svg viewBox="0 0 10 6" width="10" height="10" fill="currentColor"
-                  style={{ transform: langOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>
-                  <path d="M0 0l5 6 5-6z"/>
-                </svg>
+                {l.toUpperCase()}
               </button>
-              {langOpen && (
-                <div className="lang-drop-menu">
-                  {['uz', 'ru', 'en'].filter(l => l !== lang).map((l) => (
-                    <button
-                      key={l}
-                      className="lang-drop-item"
-                      onClick={() => { setLang(l); setLangOpen(false) }}
-                    >
-                      {l.toUpperCase()}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            ))}
           </div>
           <button
             className={`burger${menuOpen ? ' open' : ''}`}

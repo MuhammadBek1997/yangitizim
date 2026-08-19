@@ -6,12 +6,15 @@ import About from './components/About'
 import WhyUs from './components/WhyUs'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import MatrixBg from './components/MatrixBg'
 import './App.css'
 
 function App() {
   return (
     <LanguageProvider>
       <div className="app">
+        <MatrixBg />
+        <div className="page-scroll-line"><span /></div>
         <Header />
         <main>
           <Hero />
